@@ -39,8 +39,9 @@ const About = () => {
             </p>
             <ul className="list-disc list-inside text-lg text-gray-700 mb-6">
               <li className="mb-2">A dash of creativity 🎨</li>
-              <li className="mb-2">I own this domain for some emails</li>
-              <li className="mb-2">Instead of leaving it on the landing page i made something out of it</li>
+              <li className="mb-2">A sprinkle of trans joy ✨</li>
+              <li className="mb-2">Some React development practice 💻</li>
+              <li>And a whole lot of fun! 🎈</li>
             </ul>
             
             <div className="bg-purple-50 p-6 rounded-lg mt-8">
@@ -48,15 +49,14 @@ const About = () => {
                 The Fine Print
               </h2>
               <p className="text-lg text-purple-900 mb-2">
-                This is a 'demo' project for my email (skylar@estrogen.email (real email)) and I wanted to make something out of the domain besides just for emails, and leaving the landing page empty
+                This is a demo project created for fun and learning purposes. You can't
+                actually send or receive emails here (sorry!). Any "emails" you see are
+                just examples to showcase the UI design.
               </p>
               <p className="text-lg text-purple-900 mb-0">
-                
-              </p>
-              <p className="text-lg text-purple-900 mb-0">
-                So feel free to play around, log in with any "@estrogen.email" address
-                (its not a real email client), but explore the interface. It's all about having fun
-                while showcasing some web development skills!
+                Feel free to play around, log in with any "@estrogen.email" address
+                (it do forward to my actual email tho-), but explore the interface. It's all about having fun
+                while showcasing some web development skills!wwwwwwwwwwwwww
               </p>
             </div>
             
