@@ -20,7 +20,7 @@ const Home = () => {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Secure Communication</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                End-to-end encryption ensures your conversations remain private and secure.
+                Pretty Good Privacy (pgp) ensures your conversations remain private and secure.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
