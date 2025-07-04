@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Docker Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #334155;
+            margin-top: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        label {
+            font-weight: 600;
+            color: #475569;
+        }
+        input {
+            padding: 0.5rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            background: #f1f5f9;
+        }
+        button {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        pre {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            color: #334155;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Go Docker Manager</h1>
+        <div class="section">
+            <button onclick="listContainers()">List Containers</button>
+            <pre id="containers"></pre>
+        </div>
+        <div class="section">
+            <h2>Pull Image</h2>
+            <input id="pullImage" placeholder="e.g. nginx:latest">
+            <button onclick="pullImage()">Pull</button>
+            <pre id="pullResult"></pre>
+        </div>
+        <div class="section">
+            <h2>Run Container</h2>
+            <input id="runImage" placeholder="e.g. nginx:latest">
+            <button onclick="runContainer()">Run</button>
+            <pre id="runResult"></pre>
+        </div>
+    </div>
+    <script>
+        async function listContainers() {
+            const res = await fetch('/containers');
+            const data = await res.json();
+            document.getElementById('containers').textContent = JSON.stringify(data, null, 2);
+        }
+        async function pullImage() {
+            const image = document.getElementById('pullImage').value;
+            const res = await fetch('/pull', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image })
+            });
+            const data = await res.json();
+            document.getElementById('pullResult').textContent = JSON.stringify(data, null, 2);
+        }
+        async function runContainer() {
+            const image = document.getElementById('runImage').value;
+            const res = await fetch('/run', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image })
+            });
+            const data = await res.json();
+            document.getElementById('runResult').textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
