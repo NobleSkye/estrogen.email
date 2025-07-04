@@ -1,0 +1,377 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f9f6fd 0%, #f0e6ff 100%);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #8c5db9;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #8c5db9;
+}
+
+.tagline {
+    text-align: center;
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+/* Navigation */
+header {
+    margin-bottom: 30px;
+}
+
+nav {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.nav-link {
+    color: #8c5db9;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 8px 15px;
+    border: 1px solid #8c5db9;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #8c5db9;
+    color: white;
+}
+
+/* Auth Forms */
+.auth-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.auth-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+}
+
+/* Forms */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.auth-form form {
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    max-width: none;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus {
+    outline: none;
+    border-color: #8c5db9;
+}
+
+form button {
+    background-color: #8c5db9;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+form button:hover {
+    background-color: #703fa3;
+}
+
+.btn-secondary {
+    background-color: #6c757d !important;
+    margin-top: 10px !important;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62 !important;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Username Preview */
+.username-preview {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Info Sections */
+.info-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+    margin-bottom: 30px;
+}
+
+.email-address {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #8c5db9;
+    background-color: #f8f6fd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.forwarding-info {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #e8f5e8;
+    border-left: 4px solid #4CAF50;
+}
+
+.forwarding-info:has(⚠️) {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+/* Email Display */
+.emails-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+}
+
+.email-box {
+    background-color: #fff;
+    border: 2px solid #f0f0f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.email-box:hover {
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+}
+
+.email-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.email-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.email-from {
+    color: #333;
+}
+
+.email-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.email-subject {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.email-body {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #8c5db9;
+}
+
+.email-body pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.empty-state p {
+    margin-bottom: 15px;
+}
+
+/* Settings */
+.settings-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.help-text {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #17a2b8;
+}
+
+.help-text ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.help-text li {
+    margin-bottom: 8px;
+}
+
+/* Features */
+.features {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(140, 93, 185, 0.1);
+    margin-top: 30px;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+/* Links */
+a {
+    color: #8c5db9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .email-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav {
+        text-align: center;
+    }
+    
+    .nav-link {
+        display: block;
+        margin: 10px 0;
+    }
+}
