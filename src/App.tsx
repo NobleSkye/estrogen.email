@@ -11,6 +11,7 @@ import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import SendEmail from './pages/SendEmail';
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <Dashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/send-email"
+                    element={
+                      <ProtectedRoute>
+                        <SendEmail />
                       </ProtectedRoute>
                     }
                   />

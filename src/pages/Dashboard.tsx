@@ -14,6 +14,14 @@ interface Email {
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const userObj = user ? JSON.parse(user) : null;
+  const [aliases, setAliases] = useState<string[]>(() => {
+    if (userObj && userObj.forwardingEmail) {
+      return [userObj.forwardingEmail];
+    }
+    return [];
+  });
+  const [newAlias, setNewAlias] = useState('');
   const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
 
   const recentEmails: Email[] = [
@@ -71,7 +79,45 @@ Healthcare Administration Team`
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome back!</h1>
-            <span className="text-gray-600 dark:text-gray-300">{user}</span>
+            <span className="text-gray-600 dark:text-gray-300">{userObj?.email}</span>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Your Forwarding Aliases</h2>
+            <ul className="mb-2">
+              {aliases.map((alias, i) => (
+                <li key={i} className="text-pink-600 dark:text-pink-400">{alias}</li>
+              ))}
+            </ul>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                if (newAlias && !aliases.includes(newAlias + '@estrogen.email')) {
+                  setAliases([...aliases, newAlias + '@estrogen.email']);
+                  setNewAlias('');
+                  // TODO: Call backend to set up forwarding for new alias
+                }
+              }}
+              className="flex space-x-2"
+            >
+              <input
+                type="text"
+                value={newAlias}
+                onChange={e => setNewAlias(e.target.value)}
+                placeholder="New alias (username)"
+                className="p-2 border rounded"
+              />
+              <button type="submit" className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Add Alias</button>
+            </form>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Your Username</h2>
+            <div className="text-blue-600 dark:text-blue-400">{userObj?.username}</div>
+          </div>
+
+          <div className="mb-8">
+            <a href="/send-email" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Compose/Send Email</a>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

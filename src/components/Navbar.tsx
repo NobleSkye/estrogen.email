@@ -35,12 +35,20 @@ const Navbar = () => {
                 About
               </Link>
               {isAuthenticated && (
-                <Link
-                  to="/dashboard"
-                  className="text-gray-900 dark:text-white hover:text-pink-600 dark:hover:text-pink-400 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Dashboard
-                </Link>
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="text-gray-900 dark:text-white hover:text-pink-600 dark:hover:text-pink-400 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/send-email"
+                    className="text-gray-900 dark:text-white hover:text-pink-600 dark:hover:text-pink-400 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Send Email
+                  </Link>
+                </>
               )}
             </div>
           </div>
