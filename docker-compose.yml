@@ -46,7 +46,7 @@ services:
       
       # App Settings
       ALLOWED_DOMAINS: ${ALLOWED_DOMAINS:-estrogen.email,blahaj.email}
-      CORS_ORIGIN: ${CORS_ORIGIN}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://frontend.my.blahajs.gay}
       
     ports:
       - "5000:5000"
@@ -66,7 +66,7 @@ services:
       context: .
       dockerfile: Dockerfile.frontend
       args:
-        REACT_APP_API_URL: ${REACT_APP_API_URL}
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-https://api.my.blahajs.gay}
     restart: unless-stopped
     ports:
       - "3000:80"
