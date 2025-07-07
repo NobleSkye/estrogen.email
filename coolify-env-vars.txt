@@ -1,0 +1,26 @@
+# Copy these environment variables into Coolify's Environment Variables section:
+
+# Security (REQUIRED)
+JWT_SECRET=your-32-character-random-secret-here
+POSTGRES_PASSWORD=your-secure-database-password
+
+# SMTP Configuration (REQUIRED for email functionality)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+SMTP_FROM=noreply@estrogen.email
+
+# Domains and URLs (Update with your actual domains)
+ALLOWED_DOMAINS=estrogen.email,blahaj.email
+CORS_ORIGIN=https://your-frontend-domain.com
+REACT_APP_API_URL=https://your-api-domain.com
+
+# Database (Can use defaults)
+POSTGRES_DB=emailmanager
+POSTGRES_USER=emailuser
+
+# Optional
+NODE_ENV=production
+TZ=UTC
