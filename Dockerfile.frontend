@@ -1,4 +1,55 @@
-# Frontend Dockerfile for Coolify deployment# Multi-stage build for React appFROM node:18-alpine AS builder# Set working directoryWORKDIR /app# Copy package filesCOPY mail-server-frontend/package*.json ./# Install dependenciesRUN npm ci# Copy source codeCOPY mail-server-frontend/ ./# Build argument for API URLARG REACT_APP_API_URLENV REACT_APP_API_URL=$REACT_APP_API_URL# Build the appRUN npm run build# Production stage with NginxFROM nginx:alpine# Create nginx user for securityRUN addgroup -g 1001 -S nginx-appRUN adduser -S nginx-app -u 1001# Copy built appCOPY --from=builder /app/build /usr/share/nginx/html# Copy nginx configurationCOPY <<EOF /etc/nginx/conf.d/default.confserver {    listen 80;    server_name _;        # Security headers    add_header X-Frame-Options "SAMEORIGIN" always;    add_header X-Content-Type-Options "nosniff" always;    add_header X-XSS-Protection "1; mode=block" always;        # Gzip compression    gzip on;    gzip_vary on;    gzip_min_length 1024;    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;        # React app
+# Frontend Dockerfile for Coolify deployment
+
+# Multi-stage build for React app
+FROM node:18-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY mail-server-frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY mail-server-frontend/ ./
+
+# Build argument for API URL
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+
+# Build the app
+RUN npm run build
+
+# Production stage with Nginx
+FROM nginx:alpine
+
+# Create nginx user for security
+RUN addgroup -g 1001 -S nginx-app
+RUN adduser -S nginx-app -u 1001
+
+# Copy built app
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copy nginx configuration
+COPY <<EOF /etc/nginx/conf.d/default.conf
+server {
+    listen 80;
+    server_name _;
+    
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+    
+    # React app
     location / {
         root /usr/share/nginx/html;
         index index.html index.htm;
