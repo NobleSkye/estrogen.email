@@ -20,8 +20,8 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ./mail-server-api
+      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV:-production}
@@ -64,7 +64,7 @@ services:
 
   frontend:
     build:
-      context: .
+      context: ./mail-server-frontend
       dockerfile: Dockerfile.frontend
       args:
         REACT_APP_API_URL: ${REACT_APP_API_URL:-https://api.my.blahajs.gay}

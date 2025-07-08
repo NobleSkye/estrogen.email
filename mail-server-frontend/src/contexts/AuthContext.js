@@ -32,8 +32,12 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
       if (token) {
         try {
-          const response = await axios.get(`${API_BASE_URL}/api/profile`);
-          setUser(response.data);
+          // For now, we'll just use the user data from login/register
+          // since we don't have a profile endpoint yet
+          const storedUser = localStorage.getItem('user');
+          if (storedUser) {
+            setUser(JSON.parse(storedUser));
+          }
         } catch (error) {
           console.error('Failed to load user:', error);
           logout();
@@ -43,18 +47,19 @@ export const AuthProvider = ({ children }) => {
     };
 
     loadUser();
-  }, [token, API_BASE_URL]);
+  }, [token]);
 
-  const login = async (email, password) => {
+  const login = async (username, password) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/login`, {
-        email,
+        username,
         password,
       });
 
       const { token: newToken, user: userData } = response.data;
       
       localStorage.setItem('token', newToken);
+      localStorage.setItem('user', JSON.stringify(userData));
       setToken(newToken);
       setUser(userData);
       
@@ -67,18 +72,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (username, domain, password, personalEmail) => {
+  const register = async (username, password) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/register`, {
         username,
-        domain,
         password,
-        personalEmail,
       });
 
       const { token: newToken, user: userData } = response.data;
       
       localStorage.setItem('token', newToken);
+      localStorage.setItem('user', JSON.stringify(userData));
       setToken(newToken);
       setUser(userData);
       
@@ -93,6 +97,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setToken(null);
     setUser(null);
   };

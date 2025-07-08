@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS user_emails (
     forward_to VARCHAR(255), -- If NULL, forwards to user's personal_email
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_used TIMESTAMP NULL
 );
 
 -- Create trigger to update updated_at on changes
